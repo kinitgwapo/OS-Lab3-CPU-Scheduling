@@ -68,17 +68,37 @@ while True:
         if p["remaining"] > 0:
             unfinished = True
             break
+
     if not unfinished:
         break
 
     # Add newly arrived processes
     while (index < len(processes)) and (processes[index]["arrival"] <= time):
         p = processes[index]
-
         if (p["queue"] == 1):
             q1.append(p)
         else:
             q2.append(p)
 
         index += 1
+
+    # Queue 1 process is ready & no Queue 1 process is currently running
+    if ((current_q1 is None) and (q1)):
+        current_q1 = q1.popleft()
+        quantum_left = QUANTUM
+
+    # Queue 1 process is currently running
+    if (current_q1 is not None):
+        running = current_q1
+        add_segment(running["pid"], time, time + 1)
+        running["remaining"] -= 1
+        quantum_left -= 1
+
+        if (running["remaining"] == 0):
+            running["completion"] == time + 1
+            current_q1 = None
+            quantum_left = 0
+        elif (quantum_left == 0):
+            q1.append(running)
+            current_q1 = None
 # -------------------- Logic & Functions -------------------- #
