@@ -29,6 +29,13 @@ gantt = []
 total_tat = 0
 total_wt = 0
 
+print(
+      "MULTILEVEL QUEUE SCHEDULING\n"
+      "Queue 1: Round Robin (Quantum = 2ms)\n"
+      "Queue 2: FCFS\n"
+      "\nGANTT CHART\n"
+)
+
 def add_segment(pid, start, end):
     # Update previous process status
     if (gantt) and (gantt[-1][0] == pid) and (gantt[-1][2] == start):
