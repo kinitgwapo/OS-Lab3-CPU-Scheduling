@@ -41,6 +41,17 @@ print(
     "PID\\tAT\\tBT\\tCT\\tTAT\\tWT"
 )
 
+n = len(processes)
+print(
+    "Average Turnaround Time:",
+    round(total_tat / n, 2),
+    "ms"
+    "\n"
+    "Average Waiting Time:",
+    round(total_wt / n, 2),
+    "ms"
+)
+
 # -------------------- Declared Functions -------------------- #
 def add_segment(pid, start, end):
     # Update previous process status
@@ -50,5 +61,5 @@ def add_segment(pid, start, end):
     # Add new process status
     else:
         gantt.append((pid, start, end))
-
+        
 # -------------------- Declared Functions -------------------- #
