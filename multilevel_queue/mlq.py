@@ -30,12 +30,18 @@ total_tat = 0
 total_wt = 0
 
 print(
-      "MULTILEVEL QUEUE SCHEDULING\n"
-      "Queue 1: Round Robin (Quantum = 2ms)\n"
-      "Queue 2: FCFS\n"
-      "\nGANTT CHART\n"
+    "MULTILEVEL QUEUE SCHEDULING\n"
+    "Queue 1: Round Robin (Quantum = 2ms)\n"
+    "Queue 2: FCFS\n"
+    "\nGANTT CHART\n"
 )
 
+print(
+    "PROCESS PERFORMANCE"
+    "PID\\tAT\\tBT\\tCT\\tTAT\\tWT"
+)
+
+# -------------------- Declared Functions -------------------- #
 def add_segment(pid, start, end):
     # Update previous process status
     if (gantt) and (gantt[-1][0] == pid) and (gantt[-1][2] == start):
@@ -45,3 +51,4 @@ def add_segment(pid, start, end):
     else:
         gantt.append((pid, start, end))
 
+# -------------------- Declared Functions -------------------- #
