@@ -26,6 +26,8 @@ quantum_left = 0
 time = 0
 index = 0
 gantt = []
+total_tat = 0
+total_wt = 0
 
 def add_segment(pid, start, end):
     # Update previous process status
@@ -35,3 +37,4 @@ def add_segment(pid, start, end):
     # Add new process status
     else:
         gantt.append((pid, start, end))
+
