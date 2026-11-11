@@ -40,7 +40,7 @@ def add_segment(pid, start, end):
         gantt.append((pid, start, end))
 
 def mlq():
-    global q1, q2, current_q1, current_q2, quantum_left, time, index, gantt
+    global q1, q2, current_q1, current_q2, quantum_left, time, index
     while True:
         unfinished = False
         for p in processes:
