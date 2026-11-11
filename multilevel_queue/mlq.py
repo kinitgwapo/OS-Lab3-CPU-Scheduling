@@ -115,7 +115,7 @@ def mlq():
             quantum_left -= 1
 
             if (running["remaining"] == 0):
-                running["completion"] == time + 1
+                running["completion"] = time + 1
                 current_q1 = None
                 quantum_left = 0
             elif (quantum_left == 0):
