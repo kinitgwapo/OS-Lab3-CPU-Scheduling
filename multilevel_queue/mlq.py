@@ -71,5 +71,14 @@ while True:
     if not unfinished:
         break
 
+    # Add newly arrived processes
+    while (index < len(processes)) and (processes[index]["arrival"] <= time):
+        p = processes[index]
 
+        if (p["queue"] == 1):
+            q1.append(p)
+        else:
+            q2.append(p)
+
+        index += 1
 # -------------------- Logic & Functions -------------------- #
