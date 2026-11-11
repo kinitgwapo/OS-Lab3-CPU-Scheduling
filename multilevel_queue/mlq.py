@@ -101,4 +101,21 @@ while True:
         elif (quantum_left == 0):
             q1.append(running)
             current_q1 = None
+    # Queue 2 works when Queue 1 has no process to run
+    else:
+        if ((current_q2 is None) and (q2)):
+            current_q2 = q2.popleft()
+
+        if (current_q2 is not None):
+            running = current_q2
+            add_segment(running["pid"], time, time + 1)
+            running["remaining"] -= 1
+
+            if (running["remaining"] == 0):
+                running["completion"] = time + 1
+                current_q2 = None
+        else:
+            add_segment("IDLE", time, time + 1)
+
+    time += 1
 # -------------------- Logic & Functions -------------------- #
