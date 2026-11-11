@@ -13,12 +13,6 @@ processes = [
 
 QUANTUM = 2
 
-def add_segment(pid, start, end):
-    pass
-
-def mlq():
-    pass
-
 def key(p):
     return (p["arrival"], p["pid"])
 
@@ -35,42 +29,6 @@ gantt = []
 total_tat = 0
 total_wt = 0
 
-print(
-    "MULTILEVEL QUEUE SCHEDULING\n"
-    "Queue 1: Round Robin (Quantum = 2ms)\n"
-    "Queue 2: FCFS"
-)
-
-mlq()
-print("GANTT CHART")
-for pid, start, end in gantt:
-    print(f"| {pid} [{start}-{end}] ", end="")
-print("|")
-
-print(
-    "PROCESS PERFORMANCE\n"
-    "PID\\tAT\\tBT\\tCT\\tTAT\\tWT"
-)
-
-for p in sorted(processes, key=lambda x: x["pid"]):
-    turnaround = p["completion"] - p["arrival"]
-    waiting = turnaround - p["burst"]
-    total_tat += turnaround
-    total_wt += waiting
-    print(f'{p["pid"]}\\t{p["arrival"]}\\t{p["burst"]}\\t'
-          f'{p["completion"]}\\t{turnaround}\\t{waiting}')
-
-n = len(processes)
-print(
-    "Average Turnaround Time:",
-    round(total_tat / n, 2),
-    "ms"
-    "\n"
-    "Average Waiting Time:",
-    round(total_wt / n, 2),
-    "ms"
-)
-
 # -------------------- Logic & Functions -------------------- #
 def add_segment(pid, start, end):
     # Update previous process status
@@ -82,6 +40,7 @@ def add_segment(pid, start, end):
         gantt.append((pid, start, end))
 
 def mlq():
+    global q1, q2, current_q1, current_q2, quantum_left, time, index, gantt
     while True:
         unfinished = False
         for p in processes:
@@ -139,3 +98,39 @@ def mlq():
 
         time += 1
 # -------------------- Logic & Functions -------------------- #
+
+print(
+    "MULTILEVEL QUEUE SCHEDULING\n"
+    "Queue 1: Round Robin (Quantum = 2ms)\n"
+    "Queue 2: FCFS\n"
+)
+
+mlq()
+print("GANTT CHART")
+for pid, start, end in gantt:
+    print(f"| {pid} [{start}-{end}] ", end="")
+print("|")
+
+print(
+    "\nPROCESS PERFORMANCE\n"
+    "PID\tAT\tBT\tCT\tTAT\tWT"
+)
+
+for p in sorted(processes, key=lambda x: x["pid"]):
+    turnaround = p["completion"] - p["arrival"]
+    waiting = turnaround - p["burst"]
+    total_tat += turnaround
+    total_wt += waiting
+    print(f'{p["pid"]}\t{p["arrival"]}\t{p["burst"]}\t'
+          f'{p["completion"]}\t{turnaround}\t{waiting}')
+
+n = len(processes)
+print(
+    "Average Turnaround Time:",
+    round(total_tat / n, 2),
+    "ms"
+    "\n"
+    "Average Waiting Time:",
+    round(total_wt / n, 2),
+    "ms"
+)
