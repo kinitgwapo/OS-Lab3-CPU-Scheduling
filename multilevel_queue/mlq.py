@@ -17,3 +17,12 @@ def key(p):
     return (p["arrival"], p["pid"])
 
 processes.sort(key=key)
+
+q1 = deque()
+q2 = deque()
+current_q1 = None
+current_q2 = None
+quantum_left = 0
+time = 0
+index = 0
+gantt = []
