@@ -52,7 +52,7 @@ print(
     "ms"
 )
 
-# -------------------- Declared Functions -------------------- #
+# -------------------- Logic & Functions -------------------- #
 def add_segment(pid, start, end):
     # Update previous process status
     if (gantt) and (gantt[-1][0] == pid) and (gantt[-1][2] == start):
@@ -61,5 +61,15 @@ def add_segment(pid, start, end):
     # Add new process status
     else:
         gantt.append((pid, start, end))
-        
-# -------------------- Declared Functions -------------------- #
+
+while True:
+    unfinished = False
+    for p in processes:
+        if p["remaining"] > 0:
+            unfinished = True
+            break
+    if not unfinished:
+        break
+
+
+# -------------------- Logic & Functions -------------------- #
