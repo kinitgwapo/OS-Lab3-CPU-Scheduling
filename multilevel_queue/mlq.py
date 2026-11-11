@@ -4,14 +4,20 @@ from collections import deque
 # Queue 1: Round Roben; Queue 2: FCFS
 
 processes = [
-    {"pid": "P1", "arrival": "0", "burst": "5", "queue": "1", "remaining": 5, "completion": None},
-    {"pid": "P2", "arrival": "1", "burst": "4", "queue": "1", "remaining": 4, "completion": None},
-    {"pid": "P3", "arrival": "0", "burst": "6", "queue": "2", "remaining": 6, "completion": None},
-    {"pid": "P4", "arrival": "2", "burst": "3", "queue": "2", "remaining": 3, "completion": None},
-    {"pid": "P5", "arrival": "3", "burst": "2", "queue": "1", "remaining": 2, "completion": None}
+    {"pid": "P1", "arrival": 0, "burst": 5, "queue": 1, "remaining": 5, "completion": None},
+    {"pid": "P2", "arrival": 1, "burst": 4, "queue": 1, "remaining": 4, "completion": None},
+    {"pid": "P3", "arrival": 0, "burst": 6, "queue": 2, "remaining": 6, "completion": None},
+    {"pid": "P4", "arrival": 2, "burst": 3, "queue": 2, "remaining": 3, "completion": None},
+    {"pid": "P5", "arrival": 3, "burst": 2, "queue": 1, "remaining": 2, "completion": None}
 ]
 
 QUANTUM = 2
+
+def add_segment(pid, start, end):
+    pass
+
+def mlq():
+    pass
 
 def key(p):
     return (p["arrival"], p["pid"])
@@ -32,14 +38,27 @@ total_wt = 0
 print(
     "MULTILEVEL QUEUE SCHEDULING\n"
     "Queue 1: Round Robin (Quantum = 2ms)\n"
-    "Queue 2: FCFS\n"
-    "\nGANTT CHART\n"
+    "Queue 2: FCFS"
 )
 
+mlq()
+print("GANTT CHART")
+for pid, start, end in gantt:
+    print(f"| {pid} [{start}-{end}] ", end="")
+print("|")
+
 print(
-    "PROCESS PERFORMANCE"
+    "PROCESS PERFORMANCE\n"
     "PID\\tAT\\tBT\\tCT\\tTAT\\tWT"
 )
+
+for p in sorted(processes, key=lambda x: x["pid"]):
+    turnaround = p["completion"] - p["arrival"]
+    waiting = turnaround - p["burst"]
+    total_tat += turnaround
+    total_wt += waiting
+    print(f'{p["pid"]}\\t{p["arrival"]}\\t{p["burst"]}\\t'
+          f'{p["completion"]}\\t{turnaround}\\t{waiting}')
 
 n = len(processes)
 print(
