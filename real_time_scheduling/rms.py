@@ -6,3 +6,76 @@ tasks = [
     {"id": "T2", "C": 1, "T": 5, "D": 5},
     {"id": "T3", "C": 2, "T": 10, "D": 10},
 ]
+
+SIMULATION_TIME = 20
+
+def key(x):
+    return (x["T"], x["id"])
+
+def get_priority(j):
+    period = None
+
+    for t in tasks:
+        if t["id"] == j["id"]:
+            period = t["T"]
+            break
+
+    return (period, j["release"], j["id"])
+
+tasks.sort(key=key)
+
+jobs = []
+gantt = []
+
+# -------------------- Logic & Functions -------------------- #
+def add_segment(pid, start, end):
+    # Update previous process status
+    if (gantt) and (gantt[-1][0] == pid) and (gantt[-1][2] == start):
+        gantt[-1] = (pid, gantt[-1][1], end)
+
+    # Add new process status
+    else:
+        gantt.append((pid, start, end))
+
+def task_create_release():
+    for task in tasks:
+        release = 0
+        while (release < SIMULATION_TIME):
+            jobs.append({
+                "id": task["id"],
+                "release": release,
+                "deadline": release + task["D"],
+                "remaining": task["C"],
+                "completion": None
+            })
+
+            release += task["T"]
+
+def cpu_time_simulation():
+    for time in range(SIMULATION_TIME):
+        ready = []
+
+        for job in jobs:
+            if(job["release"] <= time) and (job["remaining"] > 0) and (job["deadline"] > time):
+                ready.append(job)
+
+        if ready:
+            running = min(ready, key=get_priority)
+            add_segment(running["id"], time, time + 1)
+            running["remaining"] -= 1
+
+            if (running["remaining"] == 0):
+                running["completion"] = time + 1
+        else:
+            add_segment("IDLE", time, time + 1)
+
+def task_deadline_status():
+    for job in jobs:
+        if(job["completion"] is not None) and (job["completion"] <= job["deadline"]):
+            job["status"] = "MET"
+        elif job["deadline"] <= SIMULATION_TIME:
+            job["status"] = "MISSED"
+        else:
+            job["status"] = "PENDING"
+# -------------------- Logic & Functions -------------------- #
+
