@@ -31,6 +31,7 @@ def add_segment(pid, start, end):
     # Update previous process status
     if (gantt) and (gantt[-1][0] == pid) and (gantt[-1][2] == start):
         gantt[-1] = (pid, gantt[-1][1], end)
+
     # Add new process status
     else:
         gantt.append((pid, start, end))
