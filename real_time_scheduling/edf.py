@@ -81,14 +81,24 @@ for pid, start, end in gantt:
 print("|")
  
 print("\nTASK INSTANCE RESULTS")
-print("Task\tRelease\tDeadline\tCompletion\tStatus")
+print(
+    f'{"Task":<10}'
+    f'{"Release":<12}'
+    f'{"Deadline":<12}'
+    f'{"Completion":<14}'
+    f'{"Status":<10}'
+)
 
 misses = 0
 for job in sorted(jobs, key=lambda j: (j["release"], j["id"])):
     if job["status"] == "MISSED":
         misses += 1
-    completion = job["completion"] if job["completion"] is not None else "-"
-    print(f'{job["id"]}\t{job["release"]}\t{job["deadline"]}\t'
-          f'{completion}\t\t{job["status"]}')
+    print(
+        f'{job["id"]:<10}'
+        f'{job["release"]:<12}'
+        f'{job["deadline"]:<12}'
+        f'{job["completion"]:<14}'
+        f'{job["status"]:<10}'
+    )
  
 print("\nDeadline Misses:", misses)
