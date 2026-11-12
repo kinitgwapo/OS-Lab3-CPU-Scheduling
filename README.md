@@ -31,7 +31,14 @@ This laboratory activity focuses on the implementation and simulation of Multile
 3. Earliest Deadline First
 
 ### IV. Program Implementation
-Explain how each algorithm was implemented.
+#### Multilevel Queue (MLQ):
+  - I used Python's collections.deque to manage two separate queues (Queue 1 for Round Robin with a quantum of 2ms, and Queue 2 for FCFS). A tracking index checks process arrivals at each time step and routes them accordingly.
+
+#### Rate Monotonic Scheduling (RMS):
+  - I implemented this as a preemptive fixed-priority algorithm by sorting tasks based on their periods, where shorter periods receive higher priority. The simulation loops through time intervals to evaluate ready tasks and assign the CPU using a custom priority key.
+
+#### Earliest Deadline First (EDF):
+  - I structured this as a dynamic-priority algorithm. At each time interval, active jobs are filtered, and the CPU is assigned to the task with the earliest absolute deadline.
 
 ### V. Test Data
 Include the datasets used for MLQ, RMS, and EDF.
@@ -53,12 +60,14 @@ Include the datasets used for MLQ, RMS, and EDF.
 | P3  | 2               | 10         | 10       |
 
 ### VI. Results and Discussion
-Include the Gantt charts, execution sequences,
-performance metrics, CPU utilization, and
-deadline compliance results.
+#### MLQ Results:
+  - The simulation successfully processed all inputs, yielding an average turnaround time of 12.0 ms and an average waiting time of 8.0 ms. The Gantt chart illustrates how Queue 1 handles shorter interactive tasks before Queue 2 processes longer ones.
+
+#### RMS & EDF Results:
+  - Both real-time algorithms achieved a CPU utilization of 65.0%, successfully passing their utilization bound tests. The task instance results show zero deadline misses across the 20ms simulation window, confirming that both fixed and dynamic priority scheduling met all timing constraints.
 
 ### VII. Algorithm Comparison
 MLQ (Multilevel Queue Scheduling) divides processes into separate queues based on their classifications, with each queue having its own scheduling policy and priority. RMS (Rate Monotonic Scheduling) is a fixed-priority real-time scheduling algorithm that assigns higher priority to tasks with shorter periods. EDF (Earliest Deadline First) is a dynamic-priority real-time scheduling algorithm that prioritizes the ready task with the earliest absolute deadline.
 
 ### VIII. Conclusion
-Summarize the knowledge and skills gained.
+Through this activity, I explored how operating systems handle diverse process workloads. Implementing MLQ demonstrated how queue-based classification balances system response and throughput, while RMS and EDF highlighted how priorities and deadlines ensure reliable real-time task execution.
