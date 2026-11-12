@@ -15,10 +15,15 @@
 - Date Submitted: 11/12/2026
 
 ### I. Introduction
-Explain the purpose of the laboratory activity.
+This laboratory activity focuses on the implementation and simulation of Multilevel Queue (MLQ) and real-time CPU scheduling algorithms using Python and GitHub. Students will explore how MLQ organizes processes into different queues with specific scheduling policies, while Rate Monotonic Scheduling (RMS) and Earliest Deadline First (EDF) manage periodic tasks based on priority and deadline requirements.
 
 ### II. Objectives
-List the laboratory objectives.
+- Explain the operation of Multilevel Queue, RMS, and EDF scheduling algorithms.
+- Implement MLQ scheduling using Round Robin and FCFS.
+- Implement preemptive RMS and EDF scheduling simulations using Python.
+- Generate and interpret Gantt charts showing process and task execution.
+- Calculate CPU utilization, waiting time, turnaround time, and deadline compliance.
+- Create and manage a GitHub repository containing Python source code and laboratory documentation.
 
 ### III. Scheduling Algorithms
 1. Multilevel Queue Scheduling
@@ -53,7 +58,7 @@ performance metrics, CPU utilization, and
 deadline compliance results.
 
 ### VII. Algorithm Comparison
-Compare the three scheduling algorithms.
+MLQ (Multilevel Queue Scheduling) divides processes into separate queues based on their classifications, with each queue having its own scheduling policy and priority. RMS (Rate Monotonic Scheduling) is a fixed-priority real-time scheduling algorithm that assigns higher priority to tasks with shorter periods. EDF (Earliest Deadline First) is a dynamic-priority real-time scheduling algorithm that prioritizes the ready task with the earliest absolute deadline.
 
 ### VIII. Conclusion
 Summarize the knowledge and skills gained.
