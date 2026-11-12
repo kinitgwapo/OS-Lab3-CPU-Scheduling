@@ -31,6 +31,22 @@ Explain how each algorithm was implemented.
 ### V. Test Data
 Include the datasets used for MLQ, RMS, and EDF.
 
+#### Multilevel Queue Dataset
+| PID | Arrival Time | Burst Time | Queue # |
+| :-: | :----------: | :--------: | :-----: |
+| P1  | 0            | 5          | 1       |
+| P2  | 1            | 4          | 1       |
+| P3  | 0            | 6          | 2       |
+| P4  | 2            | 3          | 2       |
+| P5  | 3            | 2          | 1       |
+
+#### Rate-Monotonic & Earliest Deadlines First Scheduling Dataset
+| PID | Completion Time | Burst Time | Deadline |
+| :-: | :-------------: | :--------: | :------: |
+| P1  | 1               | 4          | 4        |
+| P2  | 1               | 5          | 5        |
+| P3  | 2               | 10         | 10       |
+
 ### VI. Results and Discussion
 Include the Gantt charts, execution sequences,
 performance metrics, CPU utilization, and
