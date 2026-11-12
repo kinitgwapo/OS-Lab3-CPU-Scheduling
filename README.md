@@ -43,6 +43,8 @@ This laboratory activity focuses on the implementation and simulation of Multile
 ### V. Test Data
 Include the datasets used for MLQ, RMS, and EDF.
 
+<div align="center">
+ 
 #### Multilevel Queue Dataset
 | PID | Arrival Time | Burst Time | Queue # |
 | :-: | :----------: | :--------: | :-----: |
@@ -58,6 +60,8 @@ Include the datasets used for MLQ, RMS, and EDF.
 | P1  | 1               | 4          | 4        |
 | P2  | 1               | 5          | 5        |
 | P3  | 2               | 10         | 10       |
+
+</div>
 
 ### VI. Results and Discussion
 #### MLQ Results:
