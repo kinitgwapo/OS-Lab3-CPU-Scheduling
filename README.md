@@ -10,8 +10,8 @@
  
 ### Student Information
 - Name: Restauro, Kenneth O.
-- Course and Section:
-- Instructor:
+- Course and Section: BCA151 - B186.1
+- Instructor: Bahinting, Maria Fe P. 
 - Date Submitted: 11/12/2026
 
 ### I. Introduction
