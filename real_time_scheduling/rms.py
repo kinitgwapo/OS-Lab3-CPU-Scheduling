@@ -106,6 +106,7 @@ task_deadline_status()
 utilization = calculate_utilization(tasks)
 n = len(tasks)
 bound = calculate_rms_bound(n)
+misses = 0
 
 print(
     "RATE MONOTONIC SCHEDULING\n"
@@ -114,3 +115,32 @@ print(
     "RMS Sufficient Utilization Bound:", format_percentage(bound), "%\n"
     "Sufficient-Bound Test:", check_rms_bound(utilization, bound)
 )
+
+print("GANTT CHART")
+for pid, start, end in gantt:
+    print(f"| {pid} [{start}-{end}] ", end="")
+print("|\n")
+
+print("TASK INSTANCE RESULTS")
+print(
+    f'{"Task":<10}'
+    f'{"Release":<12}'
+    f'{"Deadline":<12}'
+    f'{"Completion":<14}'
+    f'{"Status":<10}'
+)
+
+for job in sorted(jobs, key=get_priority):
+    if job["status"] == "MISSED":
+        misses += 1
+    
+    completion = job["completion"] if job["completion"] is not None else "-"
+    print(
+        f'{job["id"]:<10}'
+        f'{job["release"]:<12}'
+        f'{job["deadline"]:<12}'
+        f'{completion:<14}'
+        f'{job["status"]:<10}'
+    )
+
+print("Deadline Misses:", misses)
