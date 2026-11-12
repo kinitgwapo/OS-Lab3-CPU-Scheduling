@@ -77,5 +77,40 @@ def task_deadline_status():
             job["status"] = "MISSED"
         else:
             job["status"] = "PENDING"
+
+def calculate_utilization(tasks):
+    utilization = 0
+    for task in tasks:
+        utilization += task["C"] / task["T"]
+
+    return utilization
+
+def calculate_rms_bound(n):
+    return n * (2 ** (1 / n) - 1)
+
+def format_percentage(value):
+    return round(value * 100, 2)
+
+def check_rms_bound(utilization, bound):
+    if (utilization <= bound):
+        return "PASS\n"
+
+    return "NOT PASSED\n"
+
 # -------------------- Logic & Functions -------------------- #
 
+task_create_release()
+cpu_time_simulation()
+task_deadline_status()
+
+utilization = calculate_utilization(tasks)
+n = len(tasks)
+bound = calculate_rms_bound(n)
+
+print(
+    "RATE MONOTONIC SCHEDULING\n"
+    "Priority Order:", ">" .join(t["id"] for t in tasks), "\n"
+    "CPU Utilization:", format_percentage(utilization), "%\n"
+    "RMS Sufficient Utilization Bound:", format_percentage(bound), "%\n"
+    "Sufficient-Bound Test:", check_rms_bound(utilization, bound)
+)
